@@ -1,0 +1,10 @@
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\bin\Debug\TelanLaurenJamesBsit2D.exe.config
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\bin\Debug\TelanLaurenJamesBsit2D.exe
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\bin\Debug\TelanLaurenJamesBsit2D.pdb
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.csproj.AssemblyReference.cache
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.Form1.resources
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.Properties.Resources.resources
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.csproj.GenerateResource.cache
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.csproj.CoreCompileInputs.cache
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.exe
+C:\Users\1\source\repos\TelanLaurenJamesBsit2D\obj\Debug\TelanLaurenJamesBsit2D.pdb
