@@ -11,10 +11,10 @@ using MySql.Data.MySqlClient;
 
 namespace TelanLaurenJamesBsit2D
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
         MyDatabase db = new MyDatabase();
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -36,14 +36,17 @@ namespace TelanLaurenJamesBsit2D
             }
             else
             {
-                MessageBox.Show("Welcome "+ tbusername.Text);
-                DataTable dt = db.ExecuteReturnQuery("SELECT  * from tblLoginCredentials WHERE user_username = @uname and user_password = @pword;",
+                
+                DataTable dt = db.ExecuteReturnQuery("SELECT  * from tbllogin WHERE user_username = @uname and user_password = @pword and is_active = 1;",
                 new MySqlParameter("@uname", tbusername.Text),
                 new MySqlParameter("@pword", tbpassword.Text));
 
                 if(dt.Rows.Count == 1)
                 {
-                    MessageBox.Show("Logged In");
+                    MessageBox.Show("Welcome " + tbusername.Text);
+                    frmHome frm = new frmHome();
+                    this.Hide();
+                    frm.Show();
                 }
                 else
                 {

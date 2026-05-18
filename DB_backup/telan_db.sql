@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2026 at 10:14 AM
+-- Generation Time: May 18, 2026 at 11:51 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbllogincredentials`
+-- Table structure for table `tbllogin`
 --
 
-CREATE TABLE `tbllogincredentials` (
+CREATE TABLE `tbllogin` (
   `LoginID` int(11) NOT NULL,
   `user_username` varchar(50) NOT NULL,
   `user_password` varchar(50) NOT NULL,
@@ -36,31 +36,74 @@ CREATE TABLE `tbllogincredentials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbllogincredentials`
+-- Dumping data for table `tbllogin`
 --
 
-INSERT INTO `tbllogincredentials` (`LoginID`, `user_username`, `user_password`, `userID`, `is_active`) VALUES
-(1, 'admin', 'admin', 1, 1);
+INSERT INTO `tbllogin` (`LoginID`, `user_username`, `user_password`, `userID`, `is_active`) VALUES
+(1, 'admin', 'admin', 1, 1),
+(4, 'asd', 'asd', 4, 1),
+(5, 'asdf', 'asdf', 5, 0),
+(6, 'asdf', 'asdf', 6, 1),
+(7, 'asdfg', 'asdfg', 7, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbluserinfo`
+--
+
+CREATE TABLE `tbluserinfo` (
+  `userID` int(11) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `middlename` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `emailAddress` varchar(255) NOT NULL,
+  `homeAddress` varchar(255) NOT NULL,
+  `birthDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbluserinfo`
+--
+
+INSERT INTO `tbluserinfo` (`userID`, `firstname`, `middlename`, `lastname`, `emailAddress`, `homeAddress`, `birthDate`) VALUES
+(1, 'Lauren James', 'Tesoro', 'Telan', 'ljttelan@pcu.edu.ph', 'General Trias', '2005-01-16'),
+(4, 'asd', 'asd', 'asd', 'asd', 'asd', '2026-05-19'),
+(5, 'asd', 'asd', 'asd', 'asd', 'asd', '2026-05-19'),
+(6, 'asd', 'asd', 'asd', 'asd', 'asd', '2026-05-19'),
+(7, 'asd', 'asd', 'asd', 'asd', 'asd', '2026-05-19');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbllogincredentials`
+-- Indexes for table `tbllogin`
 --
-ALTER TABLE `tbllogincredentials`
+ALTER TABLE `tbllogin`
   ADD PRIMARY KEY (`LoginID`);
+
+--
+-- Indexes for table `tbluserinfo`
+--
+ALTER TABLE `tbluserinfo`
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tbllogincredentials`
+-- AUTO_INCREMENT for table `tbllogin`
 --
-ALTER TABLE `tbllogincredentials`
-  MODIFY `LoginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tbllogin`
+  MODIFY `LoginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbluserinfo`
+--
+ALTER TABLE `tbluserinfo`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
