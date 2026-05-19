@@ -108,7 +108,7 @@ namespace TelanLaurenJamesBsit2D
                     frmUser_Load(null, null);
                 }
 
-                dUserInfoId = 0;
+                UserInfoId = 0;
                 LoginId = 0;
                 firstname.Text = "";
                 midname.Text = "";
