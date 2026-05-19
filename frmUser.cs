@@ -37,12 +37,15 @@ namespace TelanLaurenJamesBsit2D
                 "tbluserinfo.middlename, tbluserinfo.lastname, tbluserinfo.emailAddress," +
                 " tbluserinfo.homeAddress, tbluserinfo.birthDate, tbllogin.user_username as 'Username'," +
                 " tbllogin.user_password as 'Password' FROM tbllogin INNER JOIN tbluserinfo" +
-                " ON tbllogin.userID = tbluserinfo.userID;";
+                " ON tbllogin.userID = tbluserinfo.userID WHERE tbllogin.is_active = 1;";
 
             dgvuserinfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvuserinfo.DataSource = db.ExecuteReturnQuery(query);
-            dgvuserinfo.Columns[0].Visible = false;
-            dgvuserinfo.Columns[1].Visible = false;
+            if (dgvuserinfo.Columns.Count >= 2)
+            {
+                dgvuserinfo.Columns[0].Visible = false;
+                dgvuserinfo.Columns[1].Visible = false;
+            }
         }
         private void Save_Click(object sender, EventArgs e)
         {
@@ -130,15 +133,19 @@ namespace TelanLaurenJamesBsit2D
                 DialogResult result = MessageBox.Show("Are you sure you want to deactivate this account?", "Account Deactivation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-
-                    int id = Convert.ToInt32(dgvuserinfo.SelectedRows[0].Cells[1].Value);
-                    string query = "UPDATE tbllogin SET is_active = 0 where LoginID = @id";
-
-                    int affectedRows = db.ExecuteNoReturnQuery(query,
-                        new MySqlParameter("@id", id));
-                    if (affectedRows > 0)
+                    DialogResult warning = MessageBox.Show("Are you REALLY SURE you want to DEACTIVATE this account?", "Account Deactivation", MessageBoxButtons.YesNo);
+                    if (warning == DialogResult.Yes)
                     {
-                        MessageBox.Show("Account is deactivated!");
+                        int id = Convert.ToInt32(dgvuserinfo.SelectedRows[0].Cells[1].Value);
+                        string query = "UPDATE tbllogin SET is_active = 0 where LoginID = @id";
+
+                        int affectedRows = db.ExecuteNoReturnQuery(query,
+                            new MySqlParameter("@id", id));
+                        if (affectedRows > 0)
+                        {
+                            MessageBox.Show("Account is deactivated!");
+                            frmUser_Load(null, null);
+                        }
                     }
 
                 }
