@@ -21,6 +21,9 @@ namespace TelanLaurenJamesBsit2D
 
         MyDatabase db = new MyDatabase();
         bool updated = false;
+        int UserInfoId = 0;
+        int LoginId = 0;
+
         private void frmUsers_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmHome frm = new frmHome();
@@ -47,7 +50,7 @@ namespace TelanLaurenJamesBsit2D
             {
                 if (firstname.Text == "" || midname.Text == "" || lastname.Text == "") //if text box isempty wip
                 {
-                    MessageBox.Show("Stuff must not be empty");
+                    MessageBox.Show("Boxes must not be empty");
                 }
                 else
                 { 
@@ -74,11 +77,39 @@ namespace TelanLaurenJamesBsit2D
                     }
                 }
             }
-            else
+            else //WORKING UPDATE SYSTEM
             {
-                MessageBox.Show("Data Updated"); //work in progress update
-                int idUserInfo = 0;
-                int idLoginCredentials = 0;
+
+                string updateUser =
+                    "UPDATE tbluserinfo SET firstname = @fname, middlename = @mname, lastname = @lname, " +
+                    "emailAddress = @email, homeAddress = @hadd, birthDate = @bDate " +
+                    "WHERE userID = @userID;";
+
+                string updateLogin =
+                    "UPDATE tbllogin SET user_username = @username, user_password = @password " +
+                    "WHERE LoginID = @loginID;";
+
+                int affectedRowCount = db.ExecuteNoReturnQuery(updateUser + updateLogin,
+                    new MySqlParameter("@fname", firstname.Text),
+                    new MySqlParameter("@mname", midname.Text),
+                    new MySqlParameter("@lname", lastname.Text),
+                    new MySqlParameter("@email", eadd.Text),
+                    new MySqlParameter("@hadd", hadd.Text),
+                    new MySqlParameter("@bDate", bdate.Value),
+                    new MySqlParameter("@username", uname.Text),
+                    new MySqlParameter("@password", pword.Text),
+                    new MySqlParameter("@userID", UserInfoId),
+                    new MySqlParameter("@loginID", LoginId)
+                );
+
+                if (affectedRowCount > 0)
+                {
+                    MessageBox.Show("Data Updated!");
+                    frmUser_Load(null, null);
+                }
+
+                dUserInfoId = 0;
+                LoginId = 0;
                 firstname.Text = "";
                 midname.Text = "";
                 lastname.Text = "";
@@ -122,8 +153,8 @@ namespace TelanLaurenJamesBsit2D
                 if (result == DialogResult.Yes)
                 {
                     updated = true;
-                    int idUserInfo = Convert.ToInt32(dgvuserinfo.SelectedRows[0].Cells[0].Value);
-                    int idLoginCredentials = Convert.ToInt32(dgvuserinfo.SelectedRows[0].Cells[1].Value);
+                    UserInfoId = Convert.ToInt32(dgvuserinfo.SelectedRows[0].Cells[0].Value);
+                    LoginId = Convert.ToInt32(dgvuserinfo.SelectedRows[0].Cells[1].Value);
                     firstname.Text = dgvuserinfo.SelectedRows[0].Cells[2].Value.ToString();
                     midname.Text = dgvuserinfo.SelectedRows[0].Cells[3].Value.ToString();
                     lastname.Text = dgvuserinfo.SelectedRows[0].Cells[4].Value.ToString();
